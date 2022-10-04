@@ -7,6 +7,7 @@ const { userTypeDefs, userResolvers } = require("./schema/user");
 const server = new ApolloServer({
   resolvers: [bookResolvers, postResolvers, userResolvers],
   typeDefs: [bookTypeDefs, postTypeDefs, userTypeDefs],
+  introspection: true,
 });
 
 server.listen({ port }).then(({ url }) => {
