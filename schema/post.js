@@ -74,7 +74,9 @@ const resolvers = {
 
         if (postCache) return JSON.parse(postCache);
 
-        const { data } = await axios.get("http://localhost:4001/post");
+        const { data } = await axios.get(
+          "https://p3-challenge-2-production.up.railway.app/post"
+        );
 
         await redis.set("app:postss", JSON.stringify(data));
 
@@ -87,7 +89,7 @@ const resolvers = {
     findPostById: async (parent, args) => {
       try {
         const { data: post } = await axios.get(
-          `http://localhost:4001/post/${args.id}`
+          `https://p3-challenge-2-production.up.railway.app/post/${args.id}`
         );
 
         let { data: user } = await axios.get(
@@ -105,7 +107,7 @@ const resolvers = {
     addPost: async (_, args) => {
       try {
         const { data } = await axios.post(
-          `http://localhost:4001/post/create`,
+          `https://p3-challenge-2-production.up.railway.app/post/create`,
           args.newPost
         );
         console.log(data);
@@ -117,7 +119,7 @@ const resolvers = {
     editPost: async (parent, args) => {
       try {
         const { data } = await axios.put(
-          `http://localhost:4001/post/${args.id}`,
+          `https://p3-challenge-2-production.up.railway.app/post/${args.id}`,
           args.newPost
         );
         console.log(args);
@@ -130,7 +132,7 @@ const resolvers = {
     deletePost: async (parent, args) => {
       try {
         const { data } = await axios.delete(
-          `http://localhost:4001/post/${args.id}`
+          `https://p3-challenge-2-production.up.railway.app/post/${args.id}`
         );
         console.log(data);
         return data;
